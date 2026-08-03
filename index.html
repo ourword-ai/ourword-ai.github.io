@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OurWord AI</title>
+<meta name="description" content="OurWord AI 项目导览：所有项目的目录，新项目自动收录。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232a2e2c'/%3E%3Cpath d='M16 26.2 L10.6 16.8 Q10.2 9.4 16 6.4 Q21.8 9.4 21.4 16.8 Z' fill='%23fafaf7'/%3E%3Ccircle cx='16' cy='14.2' r='2.0' fill='%232a2e2c'/%3E%3Cline x1='16' y1='16.2' x2='16' y2='24.0' stroke='%232a2e2c' stroke-width='1.5'/%3E%3C/svg%3E">
+<style>
+:root{color-scheme:light only;--white:#fafaf7;--paper:#f0f0ec;--ink:#2a2e2c;--ink-70:#4c524e;--ink-50:#767c76;--ink-30:#a3a8a1;--up:#66794a;--line:rgba(42,46,44,.08);--line-strong:rgba(42,46,44,.12);--tint:rgba(42,46,44,.03);--ease-out-expo:cubic-bezier(0.16,1,0.3,1);--ease-out-quart:cubic-bezier(0.25,1,0.5,1);--dur-fast:150ms;--dur-base:200ms;--shadow-focus:0 0 0 3px rgba(42,46,44,.16);}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{background:var(--paper);}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Noto Sans SC",sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;font-optical-sizing:auto;line-height:1.55;max-width:680px;margin:0 auto;padding:48px 24px 72px;font-size:14px;}
+.mono{font-variant-numeric:tabular-nums;letter-spacing:-0.01em;}
+.skip-link{position:absolute;left:8px;top:-48px;z-index:100;padding:8px 16px;background:var(--ink);color:var(--white);border-radius:6px;font-size:13px;font-weight:600;text-decoration:none;transition:top var(--dur-base) var(--ease-out-quart);}
+.skip-link:focus{top:8px;outline:none;}
+:focus-visible{box-shadow:var(--shadow-focus);outline:none;border-radius:4px;}
+.top{display:flex;justify-content:space-between;align-items:baseline;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-50);font-weight:600;margin-bottom:72px;}
+.hero{margin-bottom:64px;}
+.hero h1{font-size:52px;font-weight:700;letter-spacing:-0.035em;line-height:1.0;}
+.hero h1 .dim{color:var(--ink-30);}
+.hero p{color:var(--ink-50);margin-top:16px;font-size:14px;max-width:420px;}
+.list{border-top:1px solid var(--line-strong);}
+.proj{position:relative;display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--line);
+/* 一次性入场叙事动画：staggered fade-rise，允许超出交互动画时长上限 */
+opacity:0;transform:translateY(10px);animation:rise 700ms var(--ease-out-expo) forwards;}
+.proj:nth-child(1){animation-delay:60ms}.proj:nth-child(2){animation-delay:120ms}.proj:nth-child(3){animation-delay:180ms}.proj:nth-child(4){animation-delay:240ms}.proj:nth-child(5){animation-delay:300ms}.proj:nth-child(6){animation-delay:360ms}.proj:nth-child(7){animation-delay:420ms}.proj:nth-child(8){animation-delay:480ms}
+@keyframes rise{to{opacity:1;transform:none;}}
+.idx{font-size:11px;color:var(--ink-30);font-variant-numeric:tabular-nums;letter-spacing:.05em;}
+.main-link{text-decoration:none;color:inherit;}
+/* 主链接铺满整行（stretched link），避免 a 嵌套 a */
+.main-link::after{content:'';position:absolute;top:0;right:0;bottom:0;left:0;}
+.proj-name{font-size:17px;font-weight:600;letter-spacing:-0.01em;}
+.proj-name .arrow{display:inline-block;font-size:13px;color:var(--ink-30);margin-left:6px;transition:transform var(--dur-base) var(--ease-out-quart),color var(--dur-base) var(--ease-out-quart);}
+.proj-desc{color:var(--ink-50);font-size:13px;margin-top:4px;max-width:480px;}
+.proj-desc.empty{color:var(--ink-30);}
+.gh{position:relative;z-index:1;font-size:11px;color:var(--ink-30);text-decoration:none;margin-top:6px;display:inline-block;transition:color var(--dur-fast) var(--ease-out-quart);}
+.proj-date{font-size:12px;color:var(--ink-30);font-variant-numeric:tabular-nums;letter-spacing:-0.01em;text-align:right;}
+@media (hover:hover) and (pointer:fine){
+  .proj:hover{background:var(--tint);}
+  .proj:hover .arrow{transform:translate(2px,-2px);color:var(--ink);}
+  .gh:hover{color:var(--ink);text-decoration:underline;text-underline-offset:3px;}
+}
+.status{padding:28px 0;color:var(--ink-50);font-size:13px;}
+.footer{margin-top:56px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:11px;color:var(--ink-30);}
+.footer a{color:var(--ink-50);text-decoration:none;}
+.footer a:hover{text-decoration:underline;text-underline-offset:3px;}
+@media (max-width:520px){
+  .hero h1{font-size:40px;}
+  .proj{grid-template-columns:32px minmax(0,1fr);}
+  .proj-date{display:none;}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-delay:0ms!important;transition-duration:.01ms!important;}}
+@media (prefers-contrast:more){.list,.proj{border-color:var(--ink-70);}}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">跳至主内容</a>
+<header class="top" role="banner">
+  <span>ourword.ai</span>
+  <span class="mono" id="count" aria-live="polite"></span>
+</header>
+<main id="main">
+  <section class="hero" aria-label="站点介绍">
+    <h1>OurWord<br><span class="dim">AI</span></h1>
+    <p>用 AI 触摸这个世界</p>
+  </section>
+  <section aria-label="项目目录">
+    <div class="list" id="list"><div class="status">正在加载……</div></div>
+  </section>
+  <footer class="footer">
+    <span>数据来自 GitHub · 每次打开自动刷新</span>
+    <a href="https://github.com/ourword-ai" rel="noopener">github.com/ourword-ai</a>
+  </footer>
+</main>
+<script>
+(function () {
+  var OWNER = 'ourword-ai';
+  // 页面自身所在仓库，不在目录中显示
+  var EXCLUDE = { 'ourword-ai.github.io': 1 };
+  // 兜底数据：GitHub API 不可用（限流/断网）时显示
+  var FALLBACK = [
+    { name: 'HumanWorld', description: '人类世界生存法则：70 个人物与典籍的生存智慧知识库，跨越 2600 年、7 大分类', html_url: 'https://github.com/ourword-ai/HumanWorld', homepage: 'https://ourword.ai/HumanWorld/', has_pages: true, pushed_at: '2026-07-29T00:00:00Z' },
+    { name: 'idea', description: '每小时更新的灵感看板：值得做的开源项目与智能体工具', html_url: 'https://github.com/ourword-ai/idea', homepage: 'https://ourword.ai/idea/', has_pages: true, pushed_at: '2026-07-30T00:00:00Z' },
+    { name: 'ai-bubble-detector', description: 'AI 泡沫检测仪：19 条红线实时监测 AI 基建泡沫，环境 / 结构 / 引爆三级判定', html_url: 'https://github.com/ourword-ai/ai-bubble-detector', homepage: 'https://ourword.ai/ai-bubble-detector/', has_pages: true, pushed_at: '2026-07-30T00:00:00Z' },
+    { name: 'ai-jobs-20yr-report', description: 'AI 将如何重塑每一种工作', html_url: 'https://github.com/ourword-ai/ai-jobs-20yr-report', homepage: 'https://ourword.ai/ai-jobs-20yr-report/', has_pages: true, pushed_at: '2026-07-30T00:00:00Z' },
+    { name: 'portfolio-tracker', description: '投资观察仪表盘：监控你自己的投资组合，加密价格实时刷新，只看持仓占比与买卖区间，不含金额', html_url: 'https://github.com/ourword-ai/portfolio-tracker', homepage: 'https://ourword.ai/portfolio-tracker/', has_pages: true, pushed_at: '2026-07-30T00:00:00Z' }
+  ];
+  // quickship 的英文占位描述视为无简介，避免英文漏到页面上
+  function cleanDesc(d) {
+    if (!d) return null;
+    if (/^published with quickship/i.test(d)) return null;
+    return d;
+  }
+  // 名字中的缩写词保持全大写
+  var ACRONYMS = { ai: 'AI', mcp: 'MCP', api: 'API', ui: 'UI', gpt: 'GPT' };
+  function displayName(name) {
+    // 连字符/下划线转空格，camelCase 拆词，每词首字母大写
+    var words = name.replace(/[-_]+/g, ' ').replace(/([a-z0-9])([A-Z])/g, '$1 $2').split(/\s+/);
+    for (var i = 0; i < words.length; i++) {
+      var w = words[i], lower = w.toLowerCase();
+      words[i] = ACRONYMS[lower] || (w.charAt(0).toUpperCase() + w.slice(1));
+    }
+    return words.join(' ');
+  }
+
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function liveUrl(r) {
+    if (r.homepage) return r.homepage;
+    if (r.has_pages) return 'https://' + OWNER + '.github.io/' + r.name + '/';
+    return null;
+  }
+  function render(repos) {
+    var rows = [];
+    var shown = 0;
+    for (var i = 0; i < repos.length; i++) {
+      var r = repos[i];
+      if (r.fork || r.archived || EXCLUDE[r.name]) continue;
+      if (!r.description && !r.has_pages) continue; // 空仓库（无简介也无上线页面）不显示
+      shown++;
+      var live = liveUrl(r);
+      var main = live || r.html_url;
+      var d = cleanDesc(r.description);
+      var desc = d ? esc(d) : '暂无简介';
+      var descCls = d ? 'proj-desc' : 'proj-desc empty';
+      var date = r.pushed_at ? r.pushed_at.slice(0, 10) : '';
+      rows.push(
+        '<div class="proj">' +
+          '<span class="idx" aria-hidden="true">' + pad(shown) + '</span>' +
+          '<span><a class="main-link" href="' + esc(main) + '" rel="noopener"><span class="proj-name">' + esc(displayName(r.name)) + '<span class="arrow" aria-hidden="true">↗</span></span></a>' +
+          '<span class="' + descCls + '" style="display:block">' + desc + '</span>' +
+          '<a class="gh" href="' + esc(r.html_url) + '" rel="noopener" aria-label="' + esc(r.name) + ' 的源码仓库">源码</a></span>' +
+          '<span class="proj-date mono" aria-label="最近更新 ' + date + '">' + date + '</span>' +
+        '</div>'
+      );
+    }
+    document.getElementById('list').innerHTML = rows.join('') || '<div class="status">暂无项目</div>';
+    document.getElementById('count').textContent = shown + ' 个项目';
+  }
+
+  render(FALLBACK); // 先渲染兜底，再用实时数据覆盖
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://api.github.com/users/' + OWNER + '/repos?per_page=100&sort=pushed');
+  xhr.timeout = 12000;
+  xhr.onload = function () {
+    if (xhr.status !== 200) return;
+    try {
+      var repos = JSON.parse(xhr.responseText);
+      repos.sort(function (a, b) { return a.pushed_at < b.pushed_at ? 1 : -1; });
+      render(repos);
+    } catch (e) { /* 保留兜底渲染 */ }
+  };
+  xhr.send();
+})();
+</script>
+</body>
+</html>
