@@ -80,22 +80,35 @@ opacity:0;transform:translateY(10px);animation:rise 700ms var(--ease-out-expo) f
   var EXCLUDE = { 'ourword-ai.github.io': 1 };
   // 兜底数据：GitHub API 不可用（限流/断网）时显示
   var FALLBACK = [
-    { name: 'HumanWorld', description: '人类世界生存法则：70 个人物与典籍的生存智慧知识库，跨越 2600 年、7 大分类', html_url: 'https://github.com/ourword-ai/HumanWorld', homepage: 'https://ourword.ai/HumanWorld/', has_pages: true, pushed_at: '2026-07-29T00:00:00Z' },
-    { name: 'idea', description: '每小时更新的灵感看板：值得做的开源项目与智能体工具', html_url: 'https://github.com/ourword-ai/idea', homepage: 'https://ourword.ai/idea/', has_pages: true, pushed_at: '2026-07-30T00:00:00Z' },
+    { name: 'idea', description: '每小时更新的灵感看板：值得做的开源项目与智能体工具', html_url: 'https://github.com/ourword-ai/idea', homepage: 'https://ourword.ai/idea/', has_pages: true, pushed_at: '2026-08-03T00:00:00Z' },
+    { name: 'zouni', description: '走你 · 计划赶得上变化：点几下出一份能直接走的旅行攻略，路上有变自己重排', html_url: 'https://github.com/ourword-ai/zouni', homepage: 'https://ourword.ai/zouni/', has_pages: true, pushed_at: '2026-08-02T00:00:00Z' },
+    { name: 'HumanWorld', description: '人类世界生存法则：75 个人物与典籍的生存智慧知识库，跨越 2600 年、7 大分类', html_url: 'https://github.com/ourword-ai/HumanWorld', homepage: 'https://ourword.ai/HumanWorld/', has_pages: true, pushed_at: '2026-08-03T00:00:00Z' },
     { name: 'ai-bubble-detector', description: 'AI 泡沫检测仪：19 条红线实时监测 AI 基建泡沫，环境 / 结构 / 引爆三级判定', html_url: 'https://github.com/ourword-ai/ai-bubble-detector', homepage: 'https://ourword.ai/ai-bubble-detector/', has_pages: true, pushed_at: '2026-07-30T00:00:00Z' },
     { name: 'ai-jobs-20yr-report', description: 'AI 将如何重塑每一种工作', html_url: 'https://github.com/ourword-ai/ai-jobs-20yr-report', homepage: 'https://ourword.ai/ai-jobs-20yr-report/', has_pages: true, pushed_at: '2026-07-30T00:00:00Z' },
     { name: 'portfolio-tracker', description: '投资观察仪表盘：监控你自己的投资组合，加密价格实时刷新，只看持仓占比与买卖区间，不含金额', html_url: 'https://github.com/ourword-ai/portfolio-tracker', homepage: 'https://ourword.ai/portfolio-tracker/', has_pages: true, pushed_at: '2026-07-30T00:00:00Z' }
   ];
+
   // quickship 的英文占位描述视为无简介，避免英文漏到页面上
   function cleanDesc(d) {
     if (!d) return null;
     if (/^published with quickship/i.test(d)) return null;
     return d;
   }
+  // 仓库名 → 中文项目名。新仓库没登记时回落到英文词形，不会显示成空白。
+  var NAMES = {
+    'humanworld':          '人类世界生存法则',
+    'idea':                '灵感看板',
+    'zouni':               '走你',
+    'ai-bubble-detector':  'AI 泡沫检测仪',
+    'ai-jobs-20yr-report': 'AI 工作重塑报告',
+    'portfolio-tracker':   '投资观察仪表盘'
+  };
   // 名字中的缩写词保持全大写
   var ACRONYMS = { ai: 'AI', mcp: 'MCP', api: 'API', ui: 'UI', gpt: 'GPT' };
   function displayName(name) {
-    // 连字符/下划线转空格，camelCase 拆词，每词首字母大写
+    var zh = NAMES[String(name).toLowerCase()];
+    if (zh) return zh;
+    // 未登记的新仓库：连字符/下划线转空格，camelCase 拆词，每词首字母大写
     var words = name.replace(/[-_]+/g, ' ').replace(/([a-z0-9])([A-Z])/g, '$1 $2').split(/\s+/);
     for (var i = 0; i < words.length; i++) {
       var w = words[i], lower = w.toLowerCase();
