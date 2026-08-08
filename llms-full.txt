@@ -1,0 +1,214 @@
+# OurWord AI — small, sharp tools and open research — touching the world with AI
+# OurWord AI — 用 AI 触摸这个世界
+# https://ourword.ai/
+# Full corpus, plain text. 7 projects.
+
+========================================================================
+## Idea
+## 灵感看板
+URL: https://ourword.ai/idea/
+Source: https://github.com/ourword-ai/idea
+Tags: Idea, 灵感看板
+
+A hand-operated board of things worth building, every entry with first-hand evidence attached.
+
+### What is it?
+A hand-operated board of things worth building, every entry with first-hand evidence attached.
+
+### What do you get?
+Reddit / 小红书 / GitHub issue 里的真人原话 + 谁在用、缺什么、什么会杀死它。
+
+### Where to read it
+https://ourword.ai/idea/ Machine-readable: https://ourword.ai/idea/llms.txt · https://ourword.ai/idea/llms-full.txt
+
+--- 中文 ---
+一块人工维护的灵感看板：只收指得出具体普通人在用的方向，每条都带第一手原声证据。
+
+### Q：这是什么？
+一块人工维护的灵感看板：只收指得出具体普通人在用的方向，每条都带第一手原声证据。
+
+### Q：能拿到什么？
+Reddit / 小红书 / GitHub issue 里的真人原话 + 谁在用、缺什么、什么会杀死它。
+
+### 在哪读
+https://ourword.ai/idea/ 机器可读：https://ourword.ai/idea/llms.txt · https://ourword.ai/idea/llms-full.txt
+
+========================================================================
+## Skill Store
+## Skill 商店
+URL: https://ourword.ai/skill-store/
+Source: https://github.com/ourword-ai/skill-store
+Tags: Skill Store, Skill 商店
+
+A daily-restocked shelf of agent skills for coding agents.
+
+### What is it?
+A daily-restocked shelf of agent skills for coding agents.
+
+### What do you get?
+249 个 skill，每个都有它做什么、适合谁、一行安装命令。
+
+### Where to read it
+https://ourword.ai/skill-store/ Machine-readable: https://ourword.ai/skill-store/llms.txt · https://ourword.ai/skill-store/llms-full.txt
+
+--- 中文 ---
+每天上新的 Agent Skill 精选店，给 Claude Code、Codex 这类编程智能体用。
+
+### Q：这是什么？
+每天上新的 Agent Skill 精选店，给 Claude Code、Codex 这类编程智能体用。
+
+### Q：能拿到什么？
+249 个 skill，每个都有它做什么、适合谁、一行安装命令。
+
+### 在哪读
+https://ourword.ai/skill-store/ 机器可读：https://ourword.ai/skill-store/llms.txt · https://ourword.ai/skill-store/llms-full.txt
+
+========================================================================
+## AI Bubble Monitor
+## AI 泡沫检测仪
+URL: https://ourword.ai/ai-bubble-detector/
+Source: https://github.com/ourword-ai/ai-bubble-detector
+Tags: AI Bubble Monitor, AI 泡沫检测仪
+
+Twenty falsifiable red lines on the AI build-out, checked against live numbers.
+
+### What is it?
+Twenty falsifiable red lines on the AI build-out, checked against live numbers.
+
+### What do you get?
+每条红线的阈值事先写死，公开记录每一次改口，并列出自己已知的盲点。
+
+### Where to read it
+https://ourword.ai/ai-bubble-detector/ Machine-readable: https://ourword.ai/ai-bubble-detector/llms.txt · https://ourword.ai/ai-bubble-detector/llms-full.txt
+
+--- 中文 ---
+20 条可证伪的红线实时监测 AI 基建泡沫，环境 / 结构 / 引爆三级判定。
+
+### Q：这是什么？
+20 条可证伪的红线实时监测 AI 基建泡沫，环境 / 结构 / 引爆三级判定。
+
+### Q：能拿到什么？
+每条红线的阈值事先写死，公开记录每一次改口，并列出自己已知的盲点。
+
+### 在哪读
+https://ourword.ai/ai-bubble-detector/ 机器可读：https://ourword.ai/ai-bubble-detector/llms.txt · https://ourword.ai/ai-bubble-detector/llms-full.txt
+
+========================================================================
+## The Restructuring of Work
+## 工作的重构
+URL: https://ourword.ai/ai-jobs-20yr-report/
+Source: https://github.com/ourword-ai/ai-jobs-20yr-report
+Tags: The Restructuring of Work, 工作的重构
+
+How AI reshapes every kind of job, 2026–2046.
+
+### What is it?
+How AI reshapes every kind of job, 2026–2046.
+
+### What do you get?
+20 类职业逐一推演、四个阶段、五分钟暴露度自测、以及这份推演哪里可能错。
+
+### Where to read it
+https://ourword.ai/ai-jobs-20yr-report/ Machine-readable: https://ourword.ai/ai-jobs-20yr-report/llms.txt · https://ourword.ai/ai-jobs-20yr-report/llms-full.txt
+
+--- 中文 ---
+AI × 职业的二十年推演（2026–2046）：岗位是任务束，不是一个整体。
+
+### Q：这是什么？
+AI × 职业的二十年推演（2026–2046）：岗位是任务束，不是一个整体。
+
+### Q：能拿到什么？
+20 类职业逐一推演、四个阶段、五分钟暴露度自测、以及这份推演哪里可能错。
+
+### 在哪读
+https://ourword.ai/ai-jobs-20yr-report/ 机器可读：https://ourword.ai/ai-jobs-20yr-report/llms.txt · https://ourword.ai/ai-jobs-20yr-report/llms-full.txt
+
+========================================================================
+## Human World
+## 人类世界生存法则
+URL: https://ourword.ai/HumanWorld/
+Source: https://github.com/ourword-ai/HumanWorld
+Tags: Human World, 人类世界生存法则
+
+80+ figures and classic texts on how the world actually works, across 2,600 years.
+
+### What is it?
+80+ figures and classic texts on how the world actually works, across 2,600 years.
+
+### What do you get?
+每条写清楚这个人真正留下的那一个想法、背后的故事、拆开的分则与今天怎么用。
+
+### Where to read it
+https://ourword.ai/HumanWorld/ Machine-readable: https://ourword.ai/HumanWorld/llms.txt · https://ourword.ai/HumanWorld/llms-full.txt
+
+--- 中文 ---
+80 多个人物与典籍的生存智慧知识库，跨越 2600 年、7 大分类。
+
+### Q：这是什么？
+80 多个人物与典籍的生存智慧知识库，跨越 2600 年、7 大分类。
+
+### Q：能拿到什么？
+每条写清楚这个人真正留下的那一个想法、背后的故事、拆开的分则与今天怎么用。
+
+### 在哪读
+https://ourword.ai/HumanWorld/ 机器可读：https://ourword.ai/HumanWorld/llms.txt · https://ourword.ai/HumanWorld/llms-full.txt
+
+========================================================================
+## Zouni
+## 走你
+URL: https://ourword.ai/zouni/
+Source: https://github.com/ourword-ai/zouni
+Tags: Zouni, 走你
+
+A road-trip plan you can actually drive, that re-plans itself when things change.
+
+### What is it?
+A road-trip plan you can actually drive, that re-plans itself when things change.
+
+### What do you get?
+北疆环线 / 青甘大环线 / 川西 / 滇西北 / 香港，逐日逐站带车程、住宿与花费。
+
+### Where to read it
+https://ourword.ai/zouni/ Machine-readable: https://ourword.ai/zouni/llms.txt · https://ourword.ai/zouni/llms-full.txt
+
+--- 中文 ---
+计划赶得上变化：点几下出一份能直接走的旅行攻略，路上有变自己重排。
+
+### Q：这是什么？
+计划赶得上变化：点几下出一份能直接走的旅行攻略，路上有变自己重排。
+
+### Q：能拿到什么？
+北疆环线 / 青甘大环线 / 川西 / 滇西北 / 香港，逐日逐站带车程、住宿与花费。
+
+### 在哪读
+https://ourword.ai/zouni/ 机器可读：https://ourword.ai/zouni/llms.txt · https://ourword.ai/zouni/llms-full.txt
+
+========================================================================
+## Market Watch
+## 投资观察仪表盘
+URL: https://ourword.ai/portfolio-tracker/
+Source: https://github.com/ourword-ai/portfolio-tracker
+Tags: Market Watch, 投资观察仪表盘
+
+Watch the shape of your portfolio, never the amount.
+
+### What is it?
+Watch the shape of your portfolio, never the amount.
+
+### What do you get?
+集中度、资产分布、以 100 为起点的指数化净值曲线、实时加密价格。
+
+### Where to read it
+https://ourword.ai/portfolio-tracker/ Machine-readable: https://ourword.ai/portfolio-tracker/llms.txt · https://ourword.ai/portfolio-tracker/llms-full.txt
+
+--- 中文 ---
+只看持仓占比与买卖区间，不含金额，数据全部留在浏览器里。
+
+### Q：这是什么？
+只看持仓占比与买卖区间，不含金额，数据全部留在浏览器里。
+
+### Q：能拿到什么？
+集中度、资产分布、以 100 为起点的指数化净值曲线、实时加密价格。
+
+### 在哪读
+https://ourword.ai/portfolio-tracker/ 机器可读：https://ourword.ai/portfolio-tracker/llms.txt · https://ourword.ai/portfolio-tracker/llms-full.txt

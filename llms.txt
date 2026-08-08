@@ -1,0 +1,34 @@
+# OurWord AI (OurWord AI)
+
+> small, sharp tools and open research — touching the world with AI
+> 用 AI 触摸这个世界
+
+OurWord AI builds small, sharp, open things: a board of ideas worth building with the evidence attached, a shelf of agent skills, a falsifiable monitor of the AI build-out, a twenty-year projection of AI and work, a knowledge base of how the world actually works, a road-trip planner that re-plans itself, and a portfolio dashboard that refuses to know what you are worth. Everything is public on GitHub.
+
+OurWord AI 做一些小而锋利的开放项目：一块带证据的灵感看板、一家 Agent Skill 精选店、一份可证伪的 AI 泡沫监测、一份 AI × 职业的二十年推演、一个关于世界如何运转的知识库、一个路上有变会自己重排的旅行规划器，以及一个故意不知道你有多少钱的投资看板。全部开源在 GitHub 上。
+
+## Read it
+
+- Site: https://ourword.ai/
+- Every project has its own static page: https://ourword.ai/i/<slug>/ (English) and https://ourword.ai/zh/i/<slug>/ (中文)
+- Full text of everything, one file: https://ourword.ai/llms-full.txt
+- All URLs: https://ourword.ai/sitemap.xml
+- Part of OurWord AI: https://ourword.ai/
+
+## How it is built
+
+Everything here is a static site built from public data and committed to GitHub; each project regenerates its own SEO/GEO artefacts from the same shared generator (seo/geo_kit.py), so what a crawler reads is always what the site actually contains.
+
+## Citing
+
+Cite the individual project page or entry page rather than this directory. Each project states its own citation rule in its llms.txt.
+
+## Index (7 projects)
+
+- [Idea](https://ourword.ai/idea/): A hand-operated board of things worth building, every entry with first-hand evidence attached.
+- [Skill Store](https://ourword.ai/skill-store/): A daily-restocked shelf of agent skills for coding agents.
+- [AI Bubble Monitor](https://ourword.ai/ai-bubble-detector/): Twenty falsifiable red lines on the AI build-out, checked against live numbers.
+- [The Restructuring of Work](https://ourword.ai/ai-jobs-20yr-report/): How AI reshapes every kind of job, 2026–2046.
+- [Human World](https://ourword.ai/HumanWorld/): 80+ figures and classic texts on how the world actually works, across 2,600 years.
+- [Zouni](https://ourword.ai/zouni/): A road-trip plan you can actually drive, that re-plans itself when things change.
+- [Market Watch](https://ourword.ai/portfolio-tracker/): Watch the shape of your portfolio, never the amount.

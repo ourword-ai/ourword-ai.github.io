@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>OurWord AI — small, sharp tools and open research — touching the world with AI</title>
+    <link>https://ourword.ai/</link>
+    <description>OurWord AI builds small, sharp, open things: a board of ideas worth building with the evidence attached, a shelf of agent skills, a falsifiable monitor of the AI build-out, a twenty-year projection of AI and work, a knowledge base of how the world actually works, a road-trip planner that re-plans itself, and a portfolio dashboard that refuses to know what you are worth. Everything is public on Git</description>
+    <language>en</language>
+    <item><title>Idea</title><link>https://ourword.ai/idea/</link><guid isPermaLink="true">https://ourword.ai/idea/</guid><description>A hand-operated board of things worth building, every entry with first-hand evidence attached.</description></item>
+    <item><title>Skill Store</title><link>https://ourword.ai/skill-store/</link><guid isPermaLink="true">https://ourword.ai/skill-store/</guid><description>A daily-restocked shelf of agent skills for coding agents.</description></item>
+    <item><title>AI Bubble Monitor</title><link>https://ourword.ai/ai-bubble-detector/</link><guid isPermaLink="true">https://ourword.ai/ai-bubble-detector/</guid><description>Twenty falsifiable red lines on the AI build-out, checked against live numbers.</description></item>
+    <item><title>The Restructuring of Work</title><link>https://ourword.ai/ai-jobs-20yr-report/</link><guid isPermaLink="true">https://ourword.ai/ai-jobs-20yr-report/</guid><description>How AI reshapes every kind of job, 2026–2046.</description></item>
+    <item><title>Human World</title><link>https://ourword.ai/HumanWorld/</link><guid isPermaLink="true">https://ourword.ai/HumanWorld/</guid><description>80+ figures and classic texts on how the world actually works, across 2,600 years.</description></item>
+    <item><title>Zouni</title><link>https://ourword.ai/zouni/</link><guid isPermaLink="true">https://ourword.ai/zouni/</guid><description>A road-trip plan you can actually drive, that re-plans itself when things change.</description></item>
+    <item><title>Market Watch</title><link>https://ourword.ai/portfolio-tracker/</link><guid isPermaLink="true">https://ourword.ai/portfolio-tracker/</guid><description>Watch the shape of your portfolio, never the amount.</description></item>
+  </channel>
+</rss>
