@@ -13,6 +13,7 @@ Run from the apex repo root:  python seo/indexnow.py [--dry-run]
 """
 import json
 import sys
+import time
 import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -75,10 +76,21 @@ def main():
         return 0
     for i in range(0, len(urls), BATCH):
         chunk = urls[i:i + BATCH]
-        code, body = submit(chunk)
-        print("submitted %d URLs -> HTTP %s %s" % (len(chunk), code, body[:120]))
-        # 200 accepted, 202 accepted-pending-key-validation; anything else is worth seeing.
-        if code not in (200, 202):
+        for attempt in range(1, 6):
+            code, body = submit(chunk)
+            print("submitted %d URLs -> HTTP %s %s" % (len(chunk), code, body[:160]))
+            if code in (200, 202):        # accepted / accepted-pending-key-validation
+                break
+            # The endpoint fetches the key file itself and asks you to wait the first
+            # time it has not seen it yet. That is a normal cold start, not a failure.
+            if code == 403 and "SiteVerification" in body:
+                if attempt == 5:
+                    print("key at https://%s/%s.txt is not verified yet — the endpoint "
+                          "asks to wait; the next scheduled run will pick it up." % (HOST, KEY))
+                    return 0
+                print("  key not verified yet, waiting 60s (attempt %d/5)" % attempt)
+                time.sleep(60)
+                continue
             return 1
     return 0
 
