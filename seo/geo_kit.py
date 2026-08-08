@@ -203,11 +203,23 @@ def head_block(site, page_url, title, description, zh=False, alt_url="",
     return "".join(out)
 
 
+LEGACY_HOST = re.compile(r"https?://ourword-ai\.github\.io/")
+
+
+def canonicalise_host(src):
+    """The project sites were built against the github.io host — canonical tags, share
+    links and in-page JS constants all pointed there, which is what split the site from
+    its own domain. Rewrite every one of them to ourword.ai."""
+    return LEGACY_HOST.sub(SITE + "/", src)
+
+
 def patch_index(path, site, items, zh=False, extra_ld=None):
     """Rewrite an existing hand-built index.html's head + inject a <noscript> index."""
     if not os.path.exists(path):
         return False
-    src = open(path, encoding="utf-8").read()
+    src = canonicalise_host(open(path, encoding="utf-8").read())
+    # A stale SEO block may sit in the body, outside the head we clean below.
+    src = re.sub(r"<!--SEO:START-->.*?<!--SEO:END-->", "", src, flags=re.S)
     m = re.search(r"(<head[^>]*>)(.*?)(</head>)", src, flags=re.S | re.I)
     if not m:
         return False
@@ -577,13 +589,14 @@ def article_ld(site, url, title, description, sections, zh=True, updated=""):
 # ----------------------------------------------------------------------- one call
 def build(site, items, root=".", index_files=("index.html",), today="",
           how_built="", cite_as="", extra_urls=(), extra_sitemaps=(),
-          item_pages=True, extra_ld=None):
+          item_pages=True, extra_ld=None, robots=True, sitemap=True):
     """Everything, in the right order. Returns a small report dict."""
     rep = {"items": len(items),
            "zh_items": sum(1 for i in items if i.has_zh()),
            "pages": write_item_pages(site, items, root) if item_pages else 0,
-           "robots": write_robots(site, root, extra_sitemaps),
-           "sitemap": write_sitemap(site, items if item_pages else [], root, today, extra_urls),
+           "robots": write_robots(site, root, extra_sitemaps) if robots else False,
+           "sitemap": (write_sitemap(site, items if item_pages else [], root, today, extra_urls)
+                       if sitemap else False),
            "llms": write_llms(site, items, root, how_built, cite_as),
            "rss": write_rss(site, items, root)}
     rep["index"] = sum(1 for f in index_files

@@ -162,9 +162,9 @@ def main():
     today = datetime.date.today().isoformat()
     items = load_items()
 
+    # The apex owns robots.txt and a sitemap INDEX, so the generic writers stay off.
     rep = G.build(SITE, items, root=".", today=today, how_built=HOW, cite_as=CITE,
-                  item_pages=False)
-    # Override the generic artefacts with the apex-specific ones.
+                  item_pages=False, robots=False, sitemap=False)
     rep["sitemap_index"] = write_sitemap_index(today)
     rep["sitemap_root"] = write_root_sitemap(today)
     rep["robots"] = write_root_robots()
