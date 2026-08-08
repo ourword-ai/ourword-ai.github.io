@@ -3,6 +3,8 @@ name: indexnow
 # need no account — only the key file at the domain root. Google has no equivalent open
 # endpoint; for Google the path is the sitemap declared in /robots.txt.
 on:
+  push:
+    paths: ["sitemap.xml", "seo/indexnow.py", ".github/workflows/indexnow.yml"]
   schedule:
     - cron: "20 4 * * 1"        # weekly, Monday
   workflow_dispatch:

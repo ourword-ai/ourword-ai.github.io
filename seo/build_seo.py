@@ -19,6 +19,7 @@ import datetime
 import json
 import os
 import sys
+import urllib.parse
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import geo_kit as G
@@ -77,6 +78,11 @@ PROJECTS = [
      "集中度、资产分布、以 100 为起点的指数化净值曲线、实时加密价格。", True),
 ]
 
+# Projects that publish topic hubs worth surfacing from the apex.
+PROJECTS_HUBS = [(p[0], p[1], p[2]) for p in [
+    ("idea", "Idea", "灵感看板"), ("skill-store", "Skill Store", "Skill 商店"),
+    ("HumanWorld", "Human World", "人类世界生存法则"), ("zouni", "Zouni", "走你")]]
+
 HOW = ("Everything here is a static site built from public data and committed to GitHub; "
        "each project regenerates its own SEO/GEO artefacts from the same shared generator "
        "(seo/geo_kit.py), so what a crawler reads is always what the site actually contains.")
@@ -107,6 +113,42 @@ def load_items():
     return items
 
 
+def deep_links():
+    """Pull each project's own topic hubs out of its live sitemap and link them from the
+    apex. It flattens crawl depth for the whole property: a hub three levels down becomes
+    one hop from the root."""
+    import urllib.request
+    import xml.etree.ElementTree as ET
+    ns = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+    out = []
+    for path, _en, cn in PROJECTS_HUBS:
+        url = "https://ourword.ai/%s/sitemap.xml" % path
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "ourword-ai-seo/1.0"})
+            with urllib.request.urlopen(req, timeout=25) as r:
+                root = ET.fromstring(r.read())
+        except Exception:
+            continue
+        hubs, allp = [], ""
+        for loc in root.findall("s:url/s:loc", ns):
+            u = (loc.text or "").strip()
+            if "/t/" in u:
+                hubs.append(u)
+            elif u.endswith("/all/"):
+                allp = u
+        if not hubs and not allp:
+            continue
+        links = []
+        if allp:
+            links.append('<a href="%s">%s</a>' % (G.esc(allp), "全部条目"))
+        for u in sorted(hubs)[:12]:
+            name = urllib.parse.unquote(u.rstrip("/").rsplit("/", 1)[-1])
+            links.append('<a href="%s">%s</a>' % (G.esc(u), G.esc(name)))
+        out.append("<li>%s：%s</li>" % (G.esc(cn), " · ".join(links)))
+    return ("<section id=\"deep-links\"><h2>直接进到每个项目里面</h2><ul>%s</ul></section>"
+            % "".join(out)) if out else ""
+
+
 def static_directory(items):
     """The project list, written into the page — the JS version is invisible to crawlers."""
     rows = []
@@ -118,9 +160,11 @@ def static_directory(items):
             '<a href="https://ourword.ai/%s/llms.txt">llms.txt</a></p></li>'
             % (path, G.esc(zh), G.esc(en), G.esc(one_zh), G.esc(gets), path, path))
     return ('<noscript><section id="projects-static"><h2>%s</h2><p>%s</p><ul>%s</ul>'
+            "%s"
             '<p><a href="/sitemap.xml">sitemap</a> · <a href="/llms.txt">llms.txt</a> · '
             '<a href="/robots.txt">robots.txt</a></p></section></noscript>'
-            % (G.esc("OurWord AI 项目目录"), G.esc(SITE.description_zh), "".join(rows)))
+            % (G.esc("OurWord AI 项目目录"), G.esc(SITE.description_zh), "".join(rows),
+               deep_links()))
 
 
 def write_sitemap_index(today):
