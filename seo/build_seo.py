@@ -187,6 +187,46 @@ def write_root_sitemap(today):
     return G._write("sitemap-root.xml", xml)
 
 
+def write_flat_sitemap():
+    """A single flat urlset with every URL on the domain.
+
+    Baidu's 搜索资源平台 no longer accepts index-type sitemap files, so the sitemap index
+    at /sitemap.xml — which is the right thing to hand Google and Bing — cannot be
+    submitted there at all. This is the same URLs in one file so Baidu has something to
+    take. 559 URLs is far inside its 50,000 / 10MB per-file limit.
+    """
+    import urllib.request
+    import xml.etree.ElementTree as ET
+    ns = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+    urls = []
+    for p in [""] + [x[0] for x in PROJECTS]:
+        u = "https://ourword.ai/%ssitemap%s.xml" % ((p + "/") if p else "", "" if p else "-root")
+        try:
+            req = urllib.request.Request(u, headers={"User-Agent": "ourword-ai-seo/1.0"})
+            with urllib.request.urlopen(req, timeout=30) as r:
+                root = ET.fromstring(r.read())
+        except Exception:
+            continue
+        for el in root.findall("s:url", ns):
+            loc = el.find("s:loc", ns)
+            lm = el.find("s:lastmod", ns)
+            if loc is not None and loc.text:
+                urls.append((loc.text.strip(), (lm.text or "").strip() if lm is not None else ""))
+    seen, rows = set(), []
+    for u, lm in urls:
+        if u in seen:
+            continue
+        seen.add(u)
+        rows.append("  <url><loc>%s</loc>%s</url>"
+                    % (G.esc(u), ("<lastmod>%s</lastmod>" % lm) if lm else ""))
+    if not rows:
+        return False
+    xml = ('<?xml version="1.0" encoding="UTF-8"?>\n'
+           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+           + "\n".join(rows) + "\n</urlset>\n")
+    return G._write("sitemap-all.xml", xml), len(rows)
+
+
 def write_root_robots():
     """The only robots.txt on the domain that any crawler actually reads."""
     L = ["# ourword.ai — we want to be crawled, indexed and cited by search and AI answer engines.",
@@ -195,6 +235,8 @@ def write_root_robots():
     for a in G.AI_AGENTS:
         L += ["User-agent: %s" % a, "Allow: /", ""]
     L.append("Sitemap: https://ourword.ai/sitemap.xml")
+    # Declared too, because Baidu cannot read the index form.
+    L.append("Sitemap: https://ourword.ai/sitemap-all.xml")
     for p in PROJECTS:
         if p[6]:
             L.append("Sitemap: https://ourword.ai/%s/sitemap.xml" % p[0])
@@ -212,6 +254,7 @@ def main():
     rep["sitemap_index"] = write_sitemap_index(today)
     rep["sitemap_root"] = write_root_sitemap(today)
     rep["robots"] = write_root_robots()
+    rep["flat_sitemap"] = write_flat_sitemap()
 
     src = open("index.html", encoding="utf-8").read()
     rep["directory"] = G._write("index.html", G._inject_body(src, G._BODY_MARK[0] +

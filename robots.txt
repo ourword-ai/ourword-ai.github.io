@@ -92,6 +92,7 @@ User-agent: YisouSpider
 Allow: /
 
 Sitemap: https://ourword.ai/sitemap.xml
+Sitemap: https://ourword.ai/sitemap-all.xml
 Sitemap: https://ourword.ai/idea/sitemap.xml
 Sitemap: https://ourword.ai/skill-store/sitemap.xml
 Sitemap: https://ourword.ai/ai-bubble-detector/sitemap.xml
