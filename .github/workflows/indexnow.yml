@@ -1,0 +1,19 @@
+name: indexnow
+# Submit-side discovery. Bing / Yandex / Seznam / Naver share the IndexNow endpoint and
+# need no account — only the key file at the domain root. Google has no equivalent open
+# endpoint; for Google the path is the sitemap declared in /robots.txt.
+on:
+  schedule:
+    - cron: "20 4 * * 1"        # weekly, Monday
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python seo/indexnow.py

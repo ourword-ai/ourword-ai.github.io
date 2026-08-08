@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>OurWord AI — small, sharp tools and open research — touching the world with AI</title>
     <link>https://ourword.ai/</link>
-    <description>OurWord AI builds small, sharp, open things: a board of ideas worth building with the evidence attached, a shelf of agent skills, a falsifiable monitor of the AI build-out, a twenty-year projection of AI and work, a knowledge base of how the world actually works, a road-trip planner that re-plans itself, and a portfolio dashboard that refuses to know what you are worth. Everything is public on Git</description>
+    <atom:link href="https://ourword.ai/feed.xml" rel="self" type="application/rss+xml"/>
+    <description>OurWord AI builds small, sharp, open things: a board of ideas worth building with the evidence attached, a shelf of agent skills, a falsifiable monitor of the AI build-out, a twenty-year projection of AI and work, a knowledge base of how the world actually works, a road-trip planner that re-plans itself, and a portfolio dashboard that refuses to know what you are worth. Everything is public on…</description>
     <language>en</language>
     <item><title>Idea</title><link>https://ourword.ai/idea/</link><guid isPermaLink="true">https://ourword.ai/idea/</guid><description>A hand-operated board of things worth building, every entry with first-hand evidence attached.</description></item>
     <item><title>Skill Store</title><link>https://ourword.ai/skill-store/</link><guid isPermaLink="true">https://ourword.ai/skill-store/</guid><description>A daily-restocked shelf of agent skills for coding agents.</description></item>
